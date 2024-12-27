@@ -84,16 +84,48 @@
             transform: rotateY(180deg);
         }
 
-        .shine {
-            animation: shineEffect 1s ease-in-out infinite; /* Smoother shine animation */
+        /* .shine {
+            animation: shineEffect 1s ease-in-out infinite;
+         
         }
 
-        /* Shine Effect Keyframes */
+        
         @keyframes shineEffect {
-            0% { background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%); }
-            50% { background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.7) 50%, transparent 100%); }
-            100% { background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%); }
-        }
+            0% { background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 10%, transparent 100%); }
+            50% { background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.7) 100%, transparent 100%); }
+            100% { background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 0%, transparent 100%); }
+        } */
+        
+        .shine {
+    position: relative; /* Ensure that the shine effect works on the element's surface */
+    overflow: hidden; /* To prevent the gradient from spilling outside */
+    display: inline-block; /* or block depending on your needs */
+    background: #fff; /* Set a default background color or adjust it to match your element's background */
+}
+
+.shine:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+    animation: shineEffect 5s ease-in-out infinite;
+}
+
+@keyframes shineEffect {
+    0% {
+        left: -100%; /* Start from left, off-screen */
+    }
+    50% {
+        left: 100%; /* Move shine across the element */
+    }
+    100% {
+        left: -100%; /* Move the shine back off-screen */
+    }
+}
+
     </style>
 </head>
 <body>
